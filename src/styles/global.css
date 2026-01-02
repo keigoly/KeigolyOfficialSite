@@ -1,0 +1,43 @@
+/* src/styles/global.css */
+@import "tailwindcss"; 
+
+/* フォント読み込み */
+@import "@fontsource/shippori-mincho/400.css";
+@import "@fontsource/shippori-mincho/500.css";
+@import "@fontsource/shippori-mincho/700.css";
+@import "@fontsource/cinzel/400.css";
+@import "@fontsource/cinzel/700.css";
+
+/* テーマ設定 (Tailwind v4) */
+@theme {
+  --color-monolith-bg: #050505;
+  --color-monolith-text: #E0E0E0;
+  --color-monolith-accent: #C5A059;
+  --color-monolith-sub: #4A5568;
+
+  --font-sans: "Shippori Mincho", sans-serif;
+  --font-serif: "Shippori Mincho", serif;
+  --font-display: "Cinzel", serif;
+  --font-body: "Shippori Mincho", serif;
+}
+
+/* 基本スタイル */
+:root {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #050505;
+}
+
+body {
+  background-color: var(--color-monolith-bg);
+  color: var(--color-monolith-text);
+  font-family: var(--font-body);
+  antialiased: antialiased;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-monolith-accent), transparent 70%);
+  color: white;
+}
