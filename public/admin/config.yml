@@ -1,0 +1,31 @@
+backend:
+  name: github
+  repo: keigoly/MyBlog
+  branch: main
+
+# ローカル開発用設定
+local_backend: true
+
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+# 日本語ロケール
+locale: 'ja'
+
+collections:
+  - name: "blog"
+    label: "ブログ"
+    label_singular: "記事"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} - {{pubDate | date('YYYY/MM/DD')}}"
+    fields:
+      - {label: "タイトル", name: "title", widget: "string"}
+      - {label: "説明", name: "description", widget: "text"}
+      - {label: "公開日", name: "pubDate", widget: "datetime"}
+      - {label: "下書き", name: "draft", widget: "boolean", default: false}
+      - {label: "カバー画像", name: "cover", widget: "image", required: false}
+      - {label: "カテゴリ", name: "category", widget: "select", options: ["Tech", "Life", "Work", "Other"]}
+      - {label: "タグ", name: "tags", widget: "list"}
+      - {label: "本文", name: "body", widget: "markdown"}

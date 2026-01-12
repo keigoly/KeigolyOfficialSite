@@ -4,7 +4,13 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionTitle from "../../components/ui/SectionTitle";
 
-const allPosts = await getCollection("blog");
+const allPosts = await getCollection("blog", ({ data }) => {
+    // 本番環境のみドラフトと未来の投稿を除外
+    if (import.meta.env.PROD) {
+        return !data.draft && data.pubDate <= new Date();
+    }
+    return true;
+});
 const sortedPosts = allPosts.sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
@@ -12,11 +18,7 @@ const sortedPosts = allPosts.sort(
 
 <BaseLayout title="BLOG" description="ブログ記事一覧">
     <section class="pt-32 pb-16 md:pt-40 md:pb-24">
-        <SectionTitle
-            client:visible
-            title="BLOG"
-            subtitle="Articles & Thoughts"
-        />
+        <SectionTitle client:visible title="BLOG" />
     </section>
 
     <section class="pb-24 md:pb-32">

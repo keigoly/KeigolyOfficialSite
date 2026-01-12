@@ -4,12 +4,12 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 
+// https://astro.build/config
 export default defineConfig({
-  // サイトURL（デプロイ時に使用）
-  site: 'https://monolith-blog.vercel.app', 
-  
+  site: 'https://monolith-blog.vercel.app',
+
   integrations: [
-    react(), 
+    react(),
     mdx()
   ],
 

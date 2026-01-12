@@ -1,37 +1,41 @@
 ---
-// src/pages/works/index.astro - Works Page (Skill Introduction)
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import SectionTitle from "../../components/ui/SectionTitle";
-import SkillSection from "../../components/ui/SkillSection";
-import ExtensionCard from "../../components/ui/ExtensionCard";
+// src/pages/en/works/index.astro - Works Page (English)
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SectionTitle from "../../../components/ui/SectionTitle";
+import SkillSection from "../../../components/ui/SkillSection";
+import ExtensionCard from "../../../components/ui/ExtensionCard";
 
-// Chrome拡張機能データ
+// Chrome Extensions data (English)
 const extensions = [
     {
-        name: "リアタイ！",
+        name: "Realtime!",
         description:
-            "実況のお供に。サイドパネルでリアルタイム検索を常駐表示。自動更新・NGフィルター機能搭載。",
+            "Perfect for live commentary. Displays real-time search in a side panel with auto-refresh and filter features.",
         url: "https://chromewebstore.google.com/detail/%E3%83%AA%E3%82%A2%E3%82%BF%E3%82%A4%EF%BC%81/indeiidgljnaokghbdogclapjjngmnkb",
         iconType: "realtime" as const,
     },
     {
-        name: "radikoかんたん予約スケジューラー",
+        name: "radiko Scheduler",
         description:
-            "番組表を作って自動で切り替え・自動再生。毎日のラジオ聴取を自動化し、聞き逃しを防ぎます。",
+            "Create a schedule for automatic switching and playback. Automates daily radio listening to prevent missed shows.",
         url: "https://chromewebstore.google.com/detail/radiko%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93%E4%BA%88%E7%B4%84%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%BC/nolggejdjkibdokfheilodifknlifipk",
         iconType: "radio" as const,
     },
     {
         name: "GemAvatar",
         description:
-            "Google Geminiのユーザーアバターをカスタマイズ。Gemごとに異なるアイコンを設定可能。",
+            "Customize your Google Gemini user avatar. Set different icons for each Gem.",
         url: "https://chromewebstore.google.com/detail/gemavatar/jpilaleommoebpebjbafdiflmfphkmbc",
         iconType: "avatar" as const,
     },
 ];
 ---
 
-<BaseLayout title="WORKS" description="業務内容・スキル紹介">
+<BaseLayout
+    title="WORKS"
+    description="Skills & Professional Experience"
+    lang="en"
+>
     <section class="pt-32 pb-16 md:pt-40 md:pb-24">
         <SectionTitle client:visible title="WORKS" />
     </section>
@@ -52,8 +56,8 @@ const extensions = [
             title="Palo Alto Networks"
             subtitle="5 Years Experience"
             description={[
-                "Palo Alto Networksのシステムエンジニアとして、セキュリティソリューションの技術サポートを担当しています。",
-                "顧客からの技術的な質問や疑問に対応し、重大な問題が発生した際にはトラブルシューティングを行います。特にメーカーとの技術連携・折衝を得意としており、複雑な問題の解決に貢献しています。",
+                "As a System Engineer at Palo Alto Networks, I provide technical support for security solutions.",
+                "I handle technical inquiries from customers and perform troubleshooting when critical issues arise. I specialize in technical collaboration and negotiation with vendors, contributing to the resolution of complex problems.",
             ]}
             skills={[
                 "Palo Alto Networks",
@@ -109,7 +113,9 @@ const extensions = [
                     <p
                         class="mt-2 font-serif text-kg-text-muted leading-relaxed"
                     >
-                        副業としてChrome拡張機能の開発を行っています。ユーザーの生産性向上やブラウジング体験の改善を目的とした拡張機能を開発・公開しています。
+                        I develop Chrome extensions as a side project. I create
+                        and publish extensions aimed at improving user
+                        productivity and enhancing the browsing experience.
                     </p>
                 </div>
             </div>

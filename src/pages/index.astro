@@ -4,15 +4,8 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/sections/Hero";
 import SectionTitle from "../components/ui/SectionTitle";
-import WorkCard from "../components/ui/WorkCard";
 
-// Get featured works and latest blog posts
-const allWorks = await getCollection("works");
-const featuredWorks = allWorks
-	.filter((work) => work.data.featured)
-	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-	.slice(0, 3);
-
+// Get latest blog posts
 const allPosts = await getCollection("blog");
 const latestPosts = allPosts
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -25,40 +18,18 @@ const latestPosts = allPosts
 
 	<!-- Works Section -->
 	<section class="py-24 md:py-32 px-6 max-w-7xl mx-auto">
-		<SectionTitle
-			client:visible
-			title="WORKS"
-			subtitle="Featured Projects"
-		/>
+		<SectionTitle client:visible title="WORKS" subtitle="What I Do" />
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-			{
-				featuredWorks.map((work) => (
-					<WorkCard
-						client:visible
-						title={work.data.title}
-						description={work.data.description}
-						category={work.data.category}
-						href={`/works/${work.slug}`}
-					/>
-				))
-			}
-		</div>
-
-		{
-			featuredWorks.length === 0 && (
-				<div class="text-center text-kg-text-muted py-12">
-					<p class="font-serif">Coming Soon...</p>
-				</div>
-			)
-		}
-
-		<div class="text-center mt-12">
+		<div class="text-center py-12">
+			<p class="font-serif text-kg-text-muted mb-8 max-w-lg mx-auto">
+				Palo Alto
+				Networksのシステムエンジニアとして働きながら、Chrome拡張機能の開発を行っています。
+			</p>
 			<a
 				href="/works"
 				class="inline-flex items-center gap-2 font-display text-sm tracking-[0.2em] text-kg-text-muted hover:text-kg-accent transition-colors duration-300"
 			>
-				VIEW ALL WORKS
+				VIEW DETAILS
 				<span class="text-lg">→</span>
 			</a>
 		</div>

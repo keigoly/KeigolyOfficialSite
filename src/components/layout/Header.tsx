@@ -2,18 +2,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const navItems = [
-  { name: 'TOP', href: '/' },
-  { name: 'ABOUT', href: '/about' },
-  { name: 'WORKS', href: '/works' },
-  { name: 'BLOG', href: '/blog' },
-  { name: 'CONTACT', href: '/contact' },
-];
+interface HeaderProps {
+  currentLang?: 'ja' | 'en';
+  currentPath?: string;
+}
 
 const socialLinks = [
   {
     name: 'X',
-    href: '#',
+    href: 'https://x.com/FourQuads',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -22,7 +19,7 @@ const socialLinks = [
   },
   {
     name: 'YouTube',
-    href: '#',
+    href: 'https://www.youtube.com/@keigoly',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -31,10 +28,37 @@ const socialLinks = [
   },
 ];
 
-export default function Header() {
+export default function Header({ currentLang = 'ja', currentPath = '/' }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState<'JP' | 'EN'>('JP');
+
+  // 言語に応じたナビゲーションアイテム
+  const isEnglish = currentLang === 'en';
+  const basePath = isEnglish ? '/en' : '';
+
+  const navItems = [
+    { name: 'TOP', href: isEnglish ? '/en' : '/' },
+    { name: 'ABOUT', href: `${basePath}/about` },
+    { name: 'WORKS', href: `${basePath}/works` },
+    { name: 'BLOG', href: '/blog' }, // ブログは常に日本語
+    { name: 'CONTACT', href: `${basePath}/contact` },
+  ];
+
+  // 言語切り替え先のパスを生成
+  const getLanguageSwitchPath = (targetLang: 'ja' | 'en') => {
+    // 現在のパスから言語プレフィックスを除去
+    let cleanPath = currentPath.replace(/^\/en/, '') || '/';
+
+    // ブログページの場合は言語切り替えしても同じパス
+    if (cleanPath.startsWith('/blog')) {
+      return cleanPath;
+    }
+
+    if (targetLang === 'en') {
+      return `/en${cleanPath === '/' ? '' : cleanPath}`;
+    }
+    return cleanPath;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +77,7 @@ export default function Header() {
         <div className="w-full px-6 lg:px-10 flex items-center justify-between">
           {/* Logo - 左端 */}
           <a
-            href="/"
+            href={isEnglish ? '/en' : '/'}
             className="hover:opacity-80 transition-opacity duration-300"
           >
             <img src="/logo.png" alt="KEIGOLY" className="h-6 lg:h-8" />
@@ -100,19 +124,19 @@ export default function Header() {
 
             {/* Language Switcher */}
             <div className="flex items-center gap-2 text-xs tracking-wider">
-              <button
-                onClick={() => setCurrentLang('JP')}
-                className={`transition-colors duration-300 ${currentLang === 'JP' ? 'text-kg-accent' : 'text-kg-text-muted hover:text-kg-text'}`}
+              <a
+                href={getLanguageSwitchPath('ja')}
+                className={`transition-colors duration-300 ${currentLang === 'ja' ? 'text-kg-accent' : 'text-kg-text-muted hover:text-kg-text'}`}
               >
                 JP
-              </button>
+              </a>
               <span className="text-kg-text-muted">/</span>
-              <button
-                onClick={() => setCurrentLang('EN')}
-                className={`transition-colors duration-300 ${currentLang === 'EN' ? 'text-kg-accent' : 'text-kg-text-muted hover:text-kg-text'}`}
+              <a
+                href={getLanguageSwitchPath('en')}
+                className={`transition-colors duration-300 ${currentLang === 'en' ? 'text-kg-accent' : 'text-kg-text-muted hover:text-kg-text'}`}
               >
                 EN
-              </button>
+              </a>
             </div>
           </div>
 
@@ -179,19 +203,19 @@ export default function Header() {
 
               {/* Mobile Language Switcher */}
               <div className="flex items-center gap-3 mt-4 text-sm tracking-wider">
-                <button
-                  onClick={() => setCurrentLang('JP')}
-                  className={`transition-colors duration-300 ${currentLang === 'JP' ? 'text-kg-accent' : 'text-kg-text-muted'}`}
+                <a
+                  href={getLanguageSwitchPath('ja')}
+                  className={`transition-colors duration-300 ${currentLang === 'ja' ? 'text-kg-accent' : 'text-kg-text-muted'}`}
                 >
                   JP
-                </button>
+                </a>
                 <span className="text-kg-text-muted">/</span>
-                <button
-                  onClick={() => setCurrentLang('EN')}
-                  className={`transition-colors duration-300 ${currentLang === 'EN' ? 'text-kg-accent' : 'text-kg-text-muted'}`}
+                <a
+                  href={getLanguageSwitchPath('en')}
+                  className={`transition-colors duration-300 ${currentLang === 'en' ? 'text-kg-accent' : 'text-kg-text-muted'}`}
                 >
                   EN
-                </button>
+                </a>
               </div>
             </nav>
           </motion.div>

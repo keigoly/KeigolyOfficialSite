@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cms": "npx decap-server"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -14,6 +15,7 @@
     "@fontsource/cinzel": "^5.2.8",
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@fontsource/shippori-mincho": "^5.2.8",
+    "@supabase/supabase-js": "^2.90.1",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",

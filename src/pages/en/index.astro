@@ -1,0 +1,106 @@
+---
+// src/pages/en/index.astro - KEIGOLY Official Site Top Page (English)
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/sections/Hero";
+import SectionTitle from "../../components/ui/SectionTitle";
+
+// Get latest blog posts
+const allPosts = await getCollection("blog");
+const latestPosts = allPosts
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 3);
+---
+
+<BaseLayout title="TOP" lang="en" fullWidth={true}>
+    <!-- Hero Section -->
+    <Hero client:load />
+
+    <!-- Works Section -->
+    <section class="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+        <SectionTitle client:visible title="WORKS" subtitle="What I Do" />
+
+        <div class="text-center py-12">
+            <p class="font-serif text-kg-text-muted mb-8 max-w-lg mx-auto">
+                Working as a System Engineer at Palo Alto Networks while
+                developing Chrome extensions.
+            </p>
+            <a
+                href="/en/works"
+                class="inline-flex items-center gap-2 font-display text-sm tracking-[0.2em] text-kg-text-muted hover:text-kg-accent transition-colors duration-300"
+            >
+                VIEW DETAILS
+                <span class="text-lg">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-24 md:py-32 px-6 max-w-7xl mx-auto bg-kg-bg-alt">
+        <SectionTitle client:visible title="BLOG" subtitle="Latest Articles" />
+
+        <div class="space-y-8 max-w-3xl mx-auto">
+            {
+                latestPosts.map((post) => (
+                    <article class="group relative flex flex-col space-y-3 p-6 bg-kg-surface border border-kg-border rounded-sm hover:border-kg-accent/50 transition-colors duration-300">
+                        <div class="text-xs font-display tracking-widest text-kg-text-muted">
+                            <time datetime={post.data.pubDate.toISOString()}>
+                                {post.data.pubDate.toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })}
+                            </time>
+                        </div>
+
+                        <a href={`/blog/${post.slug}`} class="block">
+                            <h3 class="text-xl font-serif text-kg-text group-hover:text-kg-accent transition-colors duration-300">
+                                {post.data.title}
+                            </h3>
+                        </a>
+
+                        <p class="text-sm text-kg-text-muted line-clamp-2">
+                            {post.data.description}
+                        </p>
+                    </article>
+                ))
+            }
+        </div>
+
+        {
+            latestPosts.length === 0 && (
+                <div class="text-center text-kg-text-muted py-12">
+                    <p class="font-serif">No articles yet...</p>
+                </div>
+            )
+        }
+
+        <div class="text-center mt-12">
+            <a
+                href="/blog"
+                class="inline-flex items-center gap-2 font-display text-sm tracking-[0.2em] text-kg-text-muted hover:text-kg-accent transition-colors duration-300"
+            >
+                VIEW ALL ARTICLES
+                <span class="text-lg">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 md:py-32 px-6 text-center">
+        <h2
+            class="font-display text-3xl md:text-4xl tracking-[0.3em] text-kg-text mb-6"
+        >
+            GET IN TOUCH
+        </h2>
+        <p class="text-kg-text-muted font-serif mb-8 max-w-md mx-auto">
+            Feel free to reach out for project consultations or inquiries
+        </p>
+        <a
+            href="/en/contact"
+            class="inline-block px-10 py-4 border border-kg-accent text-kg-accent font-display text-sm tracking-[0.2em] hover:bg-kg-accent hover:text-kg-bg transition-all duration-300"
+        >
+            CONTACT
+        </a>
+    </section>
+</BaseLayout>
