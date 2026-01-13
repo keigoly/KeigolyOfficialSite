@@ -157,15 +157,15 @@ export default function Header({ currentLang = 'ja', currentPath = '/' }: Header
           >
             <motion.span
               animate={isMobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className="w-6 h-px bg-kg-text block"
+              className="w-6 h-0.5 bg-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] block"
             />
             <motion.span
               animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="w-6 h-px bg-kg-text block"
+              className="w-6 h-0.5 bg-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] block"
             />
             <motion.span
               animate={isMobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className="w-6 h-px bg-kg-text block"
+              className="w-6 h-0.5 bg-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] block"
             />
           </button>
         </div>

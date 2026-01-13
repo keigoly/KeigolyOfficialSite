@@ -44,7 +44,7 @@ export default function Hero({
                     <img
                         src={heroImages[currentIndex]}
                         alt={`Hero Background ${currentIndex + 1}`}
-                        className="w-full h-full object-cover opacity-60" // 画像の明るさを少し落とす
+                        className="w-full h-full object-cover opacity-60 object-[30%_center] xl:object-center" // モバイル・タブレットでは左寄り（人物中心）、デスクトップでは中央
                     />
                     {/* Dark Overlay for Text Readability */}
                     <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
