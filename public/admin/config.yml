@@ -2,9 +2,7 @@ backend:
   name: github
   repo: keigoly/MyBlog
   branch: main
-
-# ローカル開発用設定
-local_backend: true
+  base_url: https://decap-oauth.keigoly.jp
 
 media_folder: "public/images/blog"
 public_folder: "/images/blog"

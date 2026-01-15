@@ -1,0 +1,9 @@
+name = "decap-oauth"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# GitHub OAuth App の Client ID（後で設定）
+# GITHUB_CLIENT_ID = "your-client-id"
+
+# シークレットは `wrangler secret put GITHUB_CLIENT_SECRET` で設定
