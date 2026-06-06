@@ -7,7 +7,7 @@ const steps = [
     { no: "01", en: "COLLECT", desc: "Aggregate multiple feeds (RSS / CVE / JVN / advisories / internal tickets …)." },
     { no: "02", en: "SUMMARIZE", desc: "AI distills key topics with takeaways and recommended actions." },
     { no: "03", en: "VERIFY", desc: "Each summary is checked against the primary source; errors and fabrications are reported by severity." },
-    { no: "04", en: "DELIVER", desc: "To your Slack / report. Automatically, every morning." },
+    { no: "04", en: "DELIVER", desc: "To Slack, Teams, email, or a report. Automatically, every morning." },
 ];
 ---
 
@@ -26,7 +26,7 @@ const steps = [
         <p class="max-w-2xl mx-auto text-center font-serif text-kg-text-muted leading-relaxed">
             Every morning, threat intel — aggregated, summarized, and <span
                 class="text-kg-accent">fact-checked against the source</span
-            > — delivered to your Slack.
+            > — delivered to Slack, Teams, or email.
         </p>
         <div class="mt-10 flex justify-center">
             <a
@@ -187,8 +187,8 @@ const steps = [
                     <p
                         class="mt-3 font-serif text-sm text-kg-text-muted leading-relaxed"
                     >
-                        One of your sources → verified daily digest → Slack +
-                        weekly roundup.
+                        One of your sources → verified daily digest → chat
+                        (Slack / Teams) + weekly roundup.
                     </p>
                 </div>
                 <div class="p-8 bg-kg-surface border border-kg-border rounded-sm">

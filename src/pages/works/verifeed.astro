@@ -7,7 +7,7 @@ const steps = [
     { no: "01", en: "COLLECT", ja: "収集", desc: "複数のフィードをひとつに集約（RSS / CVE / JVN / advisory / 社内チケット …）。" },
     { no: "02", en: "SUMMARIZE", ja: "要約", desc: "AIが重要トピックを「要点」と「取るべきアクション」付きで日本語に要約。" },
     { no: "03", en: "VERIFY", ja: "裏取り", desc: "生成内容を一次情報と1件ずつ突合し、誤り・捏造を重要度つきで報告。" },
-    { no: "04", en: "DELIVER", ja: "配信", desc: "御社のSlack / レポートへ。毎朝、自動で。" },
+    { no: "04", en: "DELIVER", ja: "配信", desc: "御社のSlack・Teams・メール・レポート等へ。毎朝、自動で。" },
 ];
 ---
 
@@ -25,7 +25,7 @@ const steps = [
         <p class="max-w-2xl mx-auto text-center font-serif text-kg-text-muted leading-relaxed">
             毎朝の脅威情報を、AIが集約・要約し、<span class="text-kg-accent"
                 >一次情報で“裏取り”</span
-            >してから Slack へ。
+            >してから、Slack・Teams・メールなどへ。
         </p>
         <div class="mt-10 flex justify-center">
             <a
@@ -184,7 +184,7 @@ const steps = [
                         class="mt-3 font-serif text-sm text-kg-text-muted leading-relaxed"
                     >
                         御社の情報源1本 → 裏取り付き日次ダイジェスト →
-                        御社Slack常駐 ＋ 週次まとめ。
+                        御社のチャット常駐（Slack / Teams 等）＋ 週次まとめ。
                     </p>
                 </div>
                 <div class="p-8 bg-kg-surface border border-kg-border rounded-sm">
