@@ -1,0 +1,253 @@
+---
+// src/pages/en/works/verifeed.astro - verifeed Service Detail (English)
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SectionTitle from "../../../components/ui/SectionTitle";
+
+const steps = [
+    { no: "01", en: "COLLECT", desc: "Aggregate multiple feeds (RSS / CVE / JVN / advisories / internal tickets …)." },
+    { no: "02", en: "SUMMARIZE", desc: "AI distills key topics with takeaways and recommended actions." },
+    { no: "03", en: "VERIFY", desc: "Each summary is checked against the primary source; errors and fabrications are reported by severity." },
+    { no: "04", en: "DELIVER", desc: "To Slack, Teams, email, or a report. Automatically, every morning." },
+];
+---
+
+<BaseLayout
+    title="verifeed"
+    description="Verified AI security intelligence. Threat intel aggregated, summarized, and fact-checked against the source before it reaches Slack."
+    lang="en"
+>
+    <!-- Hero -->
+    <section class="pt-32 pb-12 md:pt-40 md:pb-16">
+        <SectionTitle
+            client:visible
+            title="verifeed"
+            subtitle="Verified AI Security Intelligence"
+        />
+        <p class="max-w-2xl mx-auto text-center font-serif text-kg-text-muted leading-relaxed">
+            Every morning, threat intel — aggregated, summarized, and <span
+                class="text-kg-accent">fact-checked against the source</span
+            > — delivered to Slack, Teams, or email.
+        </p>
+        <div class="mt-10 flex justify-center">
+            <a
+                href="/en/contact"
+                class="inline-flex items-center gap-2 px-6 py-3 border border-kg-accent text-kg-accent hover:bg-kg-accent hover:text-kg-bg transition-colors duration-300 font-display text-sm tracking-wider rounded-sm"
+            >
+                Talk to us about a 2-week PoC <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="max-w-3xl mx-auto text-pretty">
+        <!-- Overview -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                OVERVIEW
+            </h2>
+            <p class="font-serif text-kg-text-muted leading-relaxed">
+                CVEs, vulnerability notes, vendor advisories, security news —
+                there are too many sources to follow. verifeed aggregates them
+                every morning, summarizes with AI, and <span class="text-kg-text"
+                    >cross-checks each summary against the primary source</span
+                > before delivery. Turn your team's morning triage from tens of
+                minutes into minutes.
+            </p>
+        </section>
+
+        <!-- The Problem -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                THE PROBLEM
+            </h2>
+            <ul class="space-y-4 font-serif text-kg-text-muted leading-relaxed">
+                <li class="border-l border-kg-border pl-4">
+                    Too much to read, every single morning.
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    AI summaries hallucinate — too risky to push straight to the
+                    team.
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    Single-person dependency: when they're out, intel stops.
+                </li>
+            </ul>
+        </section>
+
+        <!-- How it works -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                HOW IT WORKS
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+                {
+                    steps.map((s) => (
+                        <div class="p-6 bg-kg-surface border border-kg-border rounded-sm">
+                            <span class="font-display text-xs tracking-[0.2em] text-kg-accent">
+                                {s.no} — {s.en}
+                            </span>
+                            <p class="mt-3 font-serif text-sm text-kg-text-muted leading-relaxed">
+                                {s.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+            <p class="mt-6 font-serif text-sm text-kg-text-muted leading-relaxed">
+                <span class="text-kg-accent">fail-open</span> by design — one
+                dead source never stops the daily delivery.
+            </p>
+        </section>
+
+        <!-- Why verified -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                WHY "VERIFIED"
+            </h2>
+            <div class="border-l-2 border-kg-accent pl-6 py-1">
+                <p class="font-serif text-kg-text leading-relaxed">
+                    Ordinary AI summaries state things confidently even when
+                    wrong. verifeed compares every summary against the source and
+                    flags <span class="text-kg-text"
+                        >mis-attributed CVE IDs, fabricated facts, and reversed
+                        meaning</span
+                    > (CRITICAL / HIGH / MEDIUM / LOW). <span
+                        class="text-kg-accent"
+                        >So you don't have to take the AI's word for it — you can
+                        run it in production.</span
+                    >
+                </p>
+            </div>
+        </section>
+
+        <!-- Sample -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                SAMPLE
+            </h2>
+            <div
+                class="p-6 md:p-8 bg-kg-surface border border-kg-border rounded-sm font-serif text-sm text-kg-text-muted leading-relaxed space-y-3"
+            >
+                <p class="text-kg-text">
+                    Daily Threat Intelligence Digest — 2026-06-06
+                </p>
+                <p>
+                    82 new items (JPCERT 17 / JVN 20 / SANS ISC 10 / Hacker News
+                    20 / BleepingComputer 15)
+                </p>
+                <p>
+                    <span class="text-kg-text"
+                        >1. npm supply-chain attack (IronWorm / new Miasma
+                        variant)</span
+                    ><br />
+                    Summary: A Rust infostealer using an eBPF rootkit was injected
+                    into 50+ legitimate packages.<br />
+                    Action: Inventory and isolate npm dependencies immediately.
+                </p>
+                <p class="text-kg-accent">
+                    A "fact-check report" (vs. the primary source) is appended
+                    automatically.
+                </p>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                PRICING
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div class="p-8 bg-kg-surface border border-kg-border rounded-sm">
+                    <span
+                        class="font-display text-xs tracking-[0.2em] text-kg-accent"
+                        >PoC — 2 WEEKS</span
+                    >
+                    <p class="mt-3 font-display text-2xl text-kg-text">
+                        ¥500k–800k <span class="text-sm text-kg-text-muted"
+                            >/ fixed</span
+                        >
+                    </p>
+                    <p
+                        class="mt-3 font-serif text-sm text-kg-text-muted leading-relaxed"
+                    >
+                        One of your sources → verified daily digest → chat
+                        (Slack / Teams) + weekly roundup.
+                    </p>
+                </div>
+                <div class="p-8 bg-kg-surface border border-kg-border rounded-sm">
+                    <span
+                        class="font-display text-xs tracking-[0.2em] text-kg-accent"
+                        >OPERATION — MONTHLY</span
+                    >
+                    <p class="mt-3 font-display text-2xl text-kg-text">
+                        from ¥100k–200k/mo
+                    </p>
+                    <p
+                        class="mt-3 font-serif text-sm text-kg-text-muted leading-relaxed"
+                    >
+                        Production run &amp; tuning.
+                    </p>
+                </div>
+            </div>
+            <p class="mt-6 font-serif text-sm text-kg-text-muted leading-relaxed">
+                During the PoC we use public / synthetic data only. Connecting
+                production-sensitive sources comes after a data-handling
+                agreement.
+            </p>
+        </section>
+
+        <!-- Security -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                SECURITY
+            </h2>
+            <ul class="space-y-4 font-serif text-kg-text-muted leading-relaxed">
+                <li class="border-l border-kg-border pl-4">
+                    Data scope and sub-processors (the AI vendors used) disclosed
+                    up front.
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    Liability cap &amp; disclaimers in contract; human-in-the-loop
+                    by default.
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    Local / air-gapped deployments available on request.
+                </li>
+            </ul>
+        </section>
+
+        <!-- CTA -->
+        <section class="pb-24 md:pb-32 text-center">
+            <p class="font-serif text-kg-text leading-relaxed mb-8">
+                Aggregate, summarize, and verify — before anyone reads. Start
+                with two weeks.
+            </p>
+            <a
+                href="/en/contact"
+                class="inline-flex items-center gap-2 px-8 py-4 border border-kg-accent text-kg-accent hover:bg-kg-accent hover:text-kg-bg transition-colors duration-300 font-display text-sm tracking-wider rounded-sm"
+            >
+                Talk to us <span>→</span>
+            </a>
+        </section>
+    </div>
+</BaseLayout>

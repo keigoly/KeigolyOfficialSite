@@ -80,4 +80,43 @@ import SkillSection from "../../../components/ui/SkillSection";
             delay={0.2}
         />
     </section>
+
+    <!-- Divider -->
+    <div class="flex items-center justify-center py-8">
+        <div
+            class="w-24 h-px bg-gradient-to-r from-transparent via-kg-border to-transparent"
+        >
+        </div>
+    </div>
+
+    <!-- Service Section -->
+    <section class="pb-24 md:pb-32">
+        <h2
+            class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+        >
+            <span class="w-8 h-px bg-kg-accent"></span>
+            SERVICE
+        </h2>
+
+        <SkillSection
+            client:visible
+            category="AI SECURITY AUTOMATION"
+            title="verifeed"
+            subtitle="Verified Threat Intelligence"
+            description={[
+                "An AI × security service. Every morning, threat and vulnerability intel is aggregated, summarized, fact-checked against the source, and delivered to Slack, Teams, or email.",
+                "Automate your team's morning triage. Hallucinations are caught by verification, so it can run in production.",
+            ]}
+            skills={[
+                "AI Agents",
+                "Threat Intelligence",
+                "Fact-Checking",
+                "Slack",
+                "Python",
+                "Forward Deployed",
+            ]}
+            link={{ text: "VIEW DETAILS", href: "/en/works/verifeed" }}
+            delay={0.2}
+        />
+    </section>
 </BaseLayout>
