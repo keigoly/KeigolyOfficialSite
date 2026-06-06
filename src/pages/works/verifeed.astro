@@ -1,0 +1,245 @@
+---
+// src/pages/works/verifeed.astro - verifeed Service Detail (Japanese)
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionTitle from "../../components/ui/SectionTitle";
+
+const steps = [
+    { no: "01", en: "COLLECT", ja: "収集", desc: "複数のフィードをひとつに集約（RSS / CVE / JVN / advisory / 社内チケット …）。" },
+    { no: "02", en: "SUMMARIZE", ja: "要約", desc: "AIが重要トピックを「要点」と「取るべきアクション」付きで日本語に要約。" },
+    { no: "03", en: "VERIFY", ja: "裏取り", desc: "生成内容を一次情報と1件ずつ突合し、誤り・捏造を重要度つきで報告。" },
+    { no: "04", en: "DELIVER", ja: "配信", desc: "御社のSlack / レポートへ。毎朝、自動で。" },
+];
+---
+
+<BaseLayout
+    title="verifeed"
+    description="裏取り付きのAIセキュリティ・インテリジェンス。脅威情報をAIが集約・要約し、一次情報で検証してからSlackへ。"
+>
+    <!-- Hero -->
+    <section class="pt-32 pb-12 md:pt-40 md:pb-16">
+        <SectionTitle
+            client:visible
+            title="verifeed"
+            subtitle="Verified AI Security Intelligence"
+        />
+        <p class="max-w-2xl mx-auto text-center font-serif text-kg-text-muted leading-relaxed">
+            毎朝の脅威情報を、AIが集約・要約し、<span class="text-kg-accent"
+                >一次情報で“裏取り”</span
+            >してから Slack へ。
+        </p>
+        <div class="mt-10 flex justify-center">
+            <a
+                href="/contact"
+                class="inline-flex items-center gap-2 px-6 py-3 border border-kg-accent text-kg-accent hover:bg-kg-accent hover:text-kg-bg transition-colors duration-300 font-display text-sm tracking-wider rounded-sm"
+            >
+                2週間PoCを相談する <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="max-w-3xl mx-auto">
+        <!-- Overview -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                OVERVIEW
+            </h2>
+            <p class="font-serif text-kg-text-muted leading-relaxed">
+                CVE、脆弱性情報、ベンダーの advisory、セキュリティニュース——追うべき情報源は多すぎます。verifeed
+                は、それらを毎朝ひとつに集約して AI が要約し、<span
+                    class="text-kg-text">一次情報と突き合わせて裏取り</span
+                >してから届けます。SOC・情シスの「朝の情報収集」を、数十分から数分へ。
+            </p>
+        </section>
+
+        <!-- The Problem -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                THE PROBLEM
+            </h2>
+            <ul class="space-y-4 font-serif text-kg-text-muted leading-relaxed">
+                <li class="border-l border-kg-border pl-4">
+                    情報が多すぎて、毎朝は追いきれない。
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    AI 要約は“幻覚（それっぽい嘘）”が怖くて、そのままチームに流せない。
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    担当者依存。あの人が休むと、脅威情報が止まる。
+                </li>
+            </ul>
+        </section>
+
+        <!-- How it works -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                HOW IT WORKS
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+                {
+                    steps.map((s) => (
+                        <div class="p-6 bg-kg-surface border border-kg-border rounded-sm">
+                            <span class="font-display text-xs tracking-[0.2em] text-kg-accent">
+                                {s.no} — {s.en}
+                            </span>
+                            <h3 class="mt-2 font-serif text-xl text-kg-text">
+                                {s.ja}
+                            </h3>
+                            <p class="mt-2 font-serif text-sm text-kg-text-muted leading-relaxed">
+                                {s.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+            <p class="mt-6 font-serif text-sm text-kg-text-muted leading-relaxed">
+                すべて <span class="text-kg-accent">fail-open</span>
+                設計。情報源が1本落ちても止まらず、毎朝確実に届きます。
+            </p>
+        </section>
+
+        <!-- Why verified -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                WHY "VERIFIED"
+            </h2>
+            <div class="border-l-2 border-kg-accent pl-6 py-1">
+                <p class="font-serif text-kg-text leading-relaxed">
+                    普通の AI
+                    要約は、間違っていても自信満々で言い切ります。verifeed
+                    は要約を一次情報と突き合わせ、<span class="text-kg-text"
+                        >CVE番号の取り違え・存在しない事実の捏造・意味の反転</span
+                    >を検知して報告（CRITICAL / HIGH / MEDIUM / LOW）。<span
+                        class="text-kg-accent"
+                        >だから、AI の出力を鵜呑みにせず、本番運用に乗せられます。</span
+                    >
+                </p>
+            </div>
+        </section>
+
+        <!-- Sample -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                SAMPLE
+            </h2>
+            <div
+                class="p-6 md:p-8 bg-kg-surface border border-kg-border rounded-sm font-serif text-sm text-kg-text-muted leading-relaxed space-y-3"
+            >
+                <p class="text-kg-text">
+                    脅威インテリジェンス日次ダイジェスト — 2026-06-06
+                </p>
+                <p>
+                    本日の新着: 82件（JPCERT 17 / JVN 20 / SANS ISC 10 / Hacker
+                    News 20 / BleepingComputer 15）
+                </p>
+                <p>
+                    <span class="text-kg-text"
+                        >1. npm サプライチェーン攻撃（IronWorm / Miasma
+                        新亜種）</span
+                    ><br />
+                    要点: Rust 製インフォスティーラーが eBPF
+                    ルートキットを用い、50以上の正規パッケージに混入。<br />
+                    アクション: npm 依存を即時棚卸し・隔離。
+                </p>
+                <p class="text-kg-accent">
+                    末尾に「裏取りレポート」（一次情報との突合結果）を自動付与。
+                </p>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                PRICING
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div class="p-8 bg-kg-surface border border-kg-border rounded-sm">
+                    <span
+                        class="font-display text-xs tracking-[0.2em] text-kg-accent"
+                        >PoC — 2 WEEKS</span
+                    >
+                    <p class="mt-3 font-display text-2xl text-kg-text">
+                        ¥50–80万 <span class="text-sm text-kg-text-muted"
+                            >/ 固定</span
+                        >
+                    </p>
+                    <p
+                        class="mt-3 font-serif text-sm text-kg-text-muted leading-relaxed"
+                    >
+                        御社の情報源1本 → 裏取り付き日次ダイジェスト →
+                        御社Slack常駐 ＋ 週次まとめ。
+                    </p>
+                </div>
+                <div class="p-8 bg-kg-surface border border-kg-border rounded-sm">
+                    <span
+                        class="font-display text-xs tracking-[0.2em] text-kg-accent"
+                        >OPERATION — MONTHLY</span
+                    >
+                    <p class="mt-3 font-display text-2xl text-kg-text">
+                        月 ¥10–20万〜
+                    </p>
+                    <p
+                        class="mt-3 font-serif text-sm text-kg-text-muted leading-relaxed"
+                    >
+                        PoC 構成の本番運用・チューニング。
+                    </p>
+                </div>
+            </div>
+            <p class="mt-6 font-serif text-sm text-kg-text-muted leading-relaxed">
+                ※ PoC
+                期間中は公開／合成データのみで検証。本番機密ソースの接続は契約・データ取扱い合意の後に。
+            </p>
+        </section>
+
+        <!-- Security -->
+        <section class="pb-16 md:pb-20">
+            <h2
+                class="font-display text-xs tracking-[0.3em] text-kg-accent mb-8 flex items-center gap-4"
+            >
+                <span class="w-8 h-px bg-kg-accent"></span>
+                SECURITY
+            </h2>
+            <ul class="space-y-4 font-serif text-kg-text-muted leading-relaxed">
+                <li class="border-l border-kg-border pl-4">
+                    データの取扱い範囲・委託先（利用する AI 事業者）を事前に明示。
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    賠償上限・免責を明記した契約／人間レビュー前提の運用。
+                </li>
+                <li class="border-l border-kg-border pl-4">
+                    必要に応じてローカル完結・閉域構成も設計可。
+                </li>
+            </ul>
+        </section>
+
+        <!-- CTA -->
+        <section class="pb-24 md:pb-32 text-center">
+            <p class="font-serif text-kg-text leading-relaxed mb-8">
+                御社の「読む前の集約・要約・裏取り」を、まず2週間で。
+            </p>
+            <a
+                href="/contact"
+                class="inline-flex items-center gap-2 px-8 py-4 border border-kg-accent text-kg-accent hover:bg-kg-accent hover:text-kg-bg transition-colors duration-300 font-display text-sm tracking-wider rounded-sm"
+            >
+                PoCを相談する <span>→</span>
+            </a>
+        </section>
+    </div>
+</BaseLayout>
