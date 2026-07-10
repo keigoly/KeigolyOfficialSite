@@ -59,7 +59,6 @@ export default function Header({ currentLang = 'ja', currentPath = '/' }: Header
     { name: 'ABOUT', href: `${basePath}/about` },
     { name: 'WORKS', href: `${basePath}/works` },
     { name: 'APPS', href: `${basePath}/apps` },
-    { name: 'BLOG', href: '/blog' }, // ブログは常に日本語
     { name: 'CONTACT', href: `${basePath}/contact` },
   ];
 
@@ -67,11 +66,6 @@ export default function Header({ currentLang = 'ja', currentPath = '/' }: Header
   const getLanguageSwitchPath = (targetLang: 'ja' | 'en') => {
     // 現在のパスから言語プレフィックスを除去
     let cleanPath = currentPath.replace(/^\/en/, '') || '/';
-
-    // ブログページの場合は言語切り替えしても同じパス
-    if (cleanPath.startsWith('/blog')) {
-      return cleanPath;
-    }
 
     if (targetLang === 'en') {
       return `/en${cleanPath === '/' ? '' : cleanPath}`;

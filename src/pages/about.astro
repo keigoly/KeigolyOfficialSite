@@ -2,19 +2,6 @@
 // src/pages/about.astro - About Page
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionTitle from "../components/ui/SectionTitle";
-import { getCollection } from "astro:content";
-
-// ブログ記事を取得して日付順にソート（今日以降の記事のみ）
-const blogPosts = await getCollection("blog");
-const today = new Date("2026-01-10"); // サイト開設日
-const sortedPosts = blogPosts
-    .filter((post) => new Date(post.data.pubDate) > today)
-    .sort(
-        (a, b) =>
-            new Date(b.data.pubDate).getTime() -
-            new Date(a.data.pubDate).getTime(),
-    )
-    .slice(0, 5); // 最新5件を表示
 ---
 
 <BaseLayout title="ABOUT" description="KEIGOLYについて">
@@ -90,55 +77,6 @@ const sortedPosts = blogPosts
                         >
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="py-16 md:py-24 border-t border-kg-border">
-        <h2
-            class="font-display text-2xl tracking-[0.2em] text-kg-text mb-12 text-center"
-        >
-            TIMELINE
-        </h2>
-
-        <div class="max-w-2xl mx-auto space-y-8">
-            <!-- ブログ記事を動的に表示（新しい順で上に） -->
-            {
-                sortedPosts.map((post) => {
-                    const date = new Date(post.data.pubDate);
-                    const year = date.getFullYear();
-                    const monthDay = `${date.getMonth() + 1}/${date.getDate()}`;
-                    return (
-                        <div class="relative pl-8 border-l border-kg-border">
-                            <div class="absolute left-0 top-0 w-2 h-2 -translate-x-1/2 bg-kg-accent rounded-full" />
-                            <div class="text-xs font-display tracking-widest text-kg-accent mb-2">
-                                {year}.{monthDay}
-                            </div>
-                            <a href={`/blog/${post.slug}`} class="group">
-                                <h3 class="font-serif text-lg text-kg-text group-hover:text-kg-accent transition-colors">
-                                    {post.data.title}
-                                </h3>
-                            </a>
-                        </div>
-                    );
-                })
-            }
-
-            <!-- オフィシャルサイト開設（一番下に固定） -->
-            <div class="relative pl-8 border-l border-kg-border">
-                <div
-                    class="absolute left-0 top-0 w-2 h-2 -translate-x-1/2 bg-kg-border rounded-full"
-                >
-                </div>
-                <div
-                    class="text-xs font-display tracking-widest text-kg-text-muted mb-2"
-                >
-                    2026
-                </div>
-                <h3 class="font-serif text-lg text-kg-text">
-                    オフィシャルサイト開設
-                </h3>
             </div>
         </div>
     </section>
