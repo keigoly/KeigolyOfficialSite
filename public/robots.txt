@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://official.keigoly.jp/sitemap-index.xml
