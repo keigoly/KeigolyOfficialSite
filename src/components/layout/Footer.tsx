@@ -105,10 +105,17 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright */}
-                <div className="mt-8 pt-6 border-t border-kg-border/20">
+                <div className="mt-8 pt-6 border-t border-kg-border/20 flex flex-wrap items-center justify-between gap-4">
                     <p className="text-xs text-kg-text-muted/60 tracking-wider">
                         &copy; {new Date().getFullYear()} KEIGOLY
                     </p>
+                    <a
+                        href="https://keigoly.jp/"
+                        className="group inline-flex items-center gap-2 font-display text-xs tracking-[0.2em] text-kg-text-muted hover:text-kg-accent transition-colors duration-300"
+                    >
+                        <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1">&larr;</span>
+                        KEIGOLY.JP
+                    </a>
                 </div>
             </div>
         </footer>
