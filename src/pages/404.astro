@@ -1,0 +1,40 @@
+---
+// src/pages/404.astro - 404 Not Found
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="404"
+    description="ページが見つかりません - KEIGOLY"
+    fullWidth={true}
+>
+    <section
+        class="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 py-32"
+    >
+        <p
+            class="font-display text-7xl md:text-9xl tracking-[0.15em] text-kg-text"
+        >
+            404
+        </p>
+
+        <div class="w-16 h-px bg-kg-accent/60 my-8"></div>
+
+        <h1
+            class="font-display text-lg md:text-xl tracking-[0.3em] text-kg-text mb-4"
+        >
+            PAGE NOT FOUND
+        </h1>
+        <p class="font-serif text-kg-text-muted leading-relaxed max-w-md">
+            お探しのページは見つかりませんでした。<br />
+            URL が変更されたか、削除された可能性があります。
+        </p>
+
+        <a
+            href="/"
+            class="mt-12 inline-flex items-center gap-2 px-10 py-4 border border-kg-accent text-kg-accent font-display text-sm tracking-[0.2em] hover:bg-kg-accent hover:text-kg-bg transition-all duration-300"
+        >
+            BACK TO TOP
+            <span class="text-lg">→</span>
+        </a>
+    </section>
+</BaseLayout>
