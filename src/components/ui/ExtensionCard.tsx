@@ -8,13 +8,14 @@ const iconImages: Record<string, string> = {
     avatar: '/images/extensions/gemavatar.png',
     notebooklm: '/images/extensions/notebooklm.png',
     urayomi: '/images/extensions/urayomi.png',
+    netflix: '/images/extensions/netflix-jikkyo.png',
 };
 
 interface ExtensionCardProps {
     name: string;
     description: string;
     url: string;
-    iconType?: 'realtime' | 'radio' | 'avatar' | 'notebooklm' | 'urayomi';
+    iconType?: 'realtime' | 'radio' | 'avatar' | 'notebooklm' | 'urayomi' | 'netflix';
     delay?: number;
 }
 
