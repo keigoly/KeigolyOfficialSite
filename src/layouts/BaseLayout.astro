@@ -40,6 +40,8 @@ const currentPath = Astro.url.pathname;
 		<meta property="og:type" content="website" />
 		<title>{title} | KEIGOLY</title>
 		<ClientRouter />
+		<!-- Cloudflare Web Analytics (ブラウザ実測。keigoly.jp ゾーン共通のトークン。レポートはホスト別に集計) -->
+		<script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a62f6c025c3d4dd6a0db7db4e198fa1e"}'></script>
 	</head>
 	<body class="min-h-screen flex flex-col relative bg-kg-bg text-kg-text">
 		<ScrollManager client:only="react" />
